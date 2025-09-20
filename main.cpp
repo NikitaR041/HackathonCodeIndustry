@@ -128,6 +128,7 @@ int main() {
             entering(x1 + 5, y1 + 5, filePath, 255,
                      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._:/\\");
             clear_character(x1 + 5, y1 + 5);
+            setcolor(BLACK);
             outtextxy(x1 + 5, y1 + 5, filePath.c_str());
          }
          // Поле ввода имени
@@ -135,6 +136,7 @@ int main() {
             entering(x2 + 5, y2 + 5, resultName, 255,
                      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._");
             clear_character(x2 + 5, y2 + 5);
+            setcolor(BLACK);
             outtextxy(x2 + 5, y2 + 5, resultName.c_str());
          }
       }
