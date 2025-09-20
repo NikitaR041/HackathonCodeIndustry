@@ -2,27 +2,27 @@
 #include <string>
 #include <iostream>
 
-// ---------- Глобальные параметры ----------
+// ---------- Р“Р»РѕР±Р°Р»СЊРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ ----------
 int wx = 800, wy = 600;
 
-// Рисование мигающего курсора
+// Р РёСЃРѕРІР°РЅРёРµ РјРёРіР°СЋС‰РµРіРѕ РєСѓСЂСЃРѕСЂР°
 void draw_cursor(int x, int y, int c) {
    setcolor(c);
    line(x, y, x, y + textheight("A") - 1);
 }
 
-// Стирание символа
+// РЎС‚РёСЂР°РЅРёРµ СЃРёРјРІРѕР»Р°
 void clear_character(int x, int y) {
    setfillstyle(SOLID_FILL, WHITE);
    bar(x, y, x + textwidth("A") + 5, y + textheight("A"));
 }
 
-// Проверка, есть ли символ в допустимой строке
+// РџСЂРѕРІРµСЂРєР°, РµСЃС‚СЊ Р»Рё СЃРёРјРІРѕР» РІ РґРѕРїСѓСЃС‚РёРјРѕР№ СЃС‚СЂРѕРєРµ
 bool allowed_char(char ch, const std::string &allowed) {
    return allowed.find(ch) != std::string::npos;
 }
 
-// Ввод строки с мигающим курсором
+// Р’РІРѕРґ СЃС‚СЂРѕРєРё СЃ РјРёРіР°СЋС‰РёРј РєСѓСЂСЃРѕСЂРѕРј
 void entering(int x, int y, std::string &text, int MAX_LENGTH, const std::string &allowed) {
    int cur = 0;
    bool running = true;
@@ -31,7 +31,7 @@ void entering(int x, int y, std::string &text, int MAX_LENGTH, const std::string
    setbkcolor(WHITE);
 
    while (running) {
-      // Мигающий курсор
+      // РњРёРіР°СЋС‰РёР№ РєСѓСЂСЃРѕСЂ
       draw_cursor(x + textwidth(text.c_str()) + 2, y, cur < 10 ? BLACK : WHITE);
       cur = (cur + 1) % 20;
 
@@ -43,7 +43,7 @@ void entering(int x, int y, std::string &text, int MAX_LENGTH, const std::string
 
       if (kbhit()) {
          int ch = getch();
-         if (ch == 13 || ch == 27) { // Enter или Esc
+         if (ch == 13 || ch == 27) { // Enter РёР»Рё Esc
             running = false;
          }
          else if (ch == 8 && !text.empty()) { // Backspace
@@ -61,7 +61,7 @@ void entering(int x, int y, std::string &text, int MAX_LENGTH, const std::string
    draw_cursor(x + textwidth(text.c_str()) + 2, y, WHITE);
 }
 
-// ---------- Универсальная кнопка ----------
+// ---------- РЈРЅРёРІРµСЂСЃР°Р»СЊРЅР°СЏ РєРЅРѕРїРєР° ----------
 bool button(int x, int y, int w, int h, const char *label,
             int textOffsetX = 10, int textOffsetY = 5)
 {
@@ -80,12 +80,12 @@ bool button(int x, int y, int w, int h, const char *label,
 
 // ===================== MAIN =====================
 int main() {
-   initwindow(wx, wy, "Интерфейс");
+   initwindow(wx, wy, "РРЅС‚РµСЂС„РµР№СЃ");
 
    std::string filePath   = "";
    std::string resultName = "untitled.txt";
 
-   // Координаты элементов
+   // РљРѕРѕСЂРґРёРЅР°С‚С‹ СЌР»РµРјРµРЅС‚РѕРІ
    int x1 = 40,  y1 = 60;
    int w1 = 300, h1 = 25;
    int x2 = 40,  y2 = 110;
@@ -96,25 +96,25 @@ int main() {
    int xBtnSave  = x2 + w2 + 20, yBtnSave  = y2, wBtnSave  = 150, hBtnSave  = 25;
    int xBtnDemo  = 200, yBtnDemo = 170, wBtnDemo = 260, hBtnDemo = 30;
 
-   // Отрисовка каркаса один раз
+   // РћС‚СЂРёСЃРѕРІРєР° РєР°СЂРєР°СЃР° РѕРґРёРЅ СЂР°Р·
    setbkcolor(WHITE);
    cleardevice();
    setcolor(BLACK);
 
-   outtextxy(x1, y1 - 20, "Введите путь до файла:");
+   outtextxy(x1, y1 - 20, "Р’РІРµРґРёС‚Рµ РїСѓС‚СЊ РґРѕ С„Р°Р№Р»Р°:");
    rectangle(x1, y1, x1 + w1, y1 + h1);
 
-   outtextxy(x2, y2 - 20, "Введите название итогового файла:");
+   outtextxy(x2, y2 - 20, "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РёС‚РѕРіРѕРІРѕРіРѕ С„Р°Р№Р»Р°:");
    rectangle(x2, y2, x2 + w2, y2 + h2);
 
    rectangle(xRect, yRect, xRect + wRect, yRect + hRect);
 
-   // Статические кнопки
-   button(xBtnStart, yBtnStart, wBtnStart, hBtnStart, "Старт вычислений");
-   button(xBtnSave,  yBtnSave,  wBtnSave,  hBtnSave,  "Сохранить результат");
-   button(xBtnDemo,  yBtnDemo,  wBtnDemo,  hBtnDemo,  "Запустить демонстрацию работы");
+   // РЎС‚Р°С‚РёС‡РµСЃРєРёРµ РєРЅРѕРїРєРё
+   button(xBtnStart, yBtnStart, wBtnStart, hBtnStart, "РЎС‚Р°СЂС‚ РІС‹С‡РёСЃР»РµРЅРёР№");
+   button(xBtnSave,  yBtnSave,  wBtnSave,  hBtnSave,  "РЎРѕС…СЂР°РЅРёС‚СЊ СЂРµР·СѓР»СЊС‚Р°С‚");
+   button(xBtnDemo,  yBtnDemo,  wBtnDemo,  hBtnDemo,  "Р—Р°РїСѓСЃС‚РёС‚СЊ РґРµРјРѕРЅСЃС‚СЂР°С†РёСЋ СЂР°Р±РѕС‚С‹");
 
-   // Первичный вывод текста
+   // РџРµСЂРІРёС‡РЅС‹Р№ РІС‹РІРѕРґ С‚РµРєСЃС‚Р°
    outtextxy(x1 + 5, y1 + 5, filePath.c_str());
    outtextxy(x2 + 5, y2 + 5, resultName.c_str());
 
@@ -123,14 +123,14 @@ int main() {
          int mx, my;
          getmouseclick(WM_LBUTTONDOWN, mx, my);
 
-         // Поле ввода пути
+         // РџРѕР»Рµ РІРІРѕРґР° РїСѓС‚Рё
          if (mx > x1 && mx < x1 + w1 && my > y1 && my < y1 + h1) {
             entering(x1 + 5, y1 + 5, filePath, 255,
                      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._:/\\");
             clear_character(x1 + 5, y1 + 5);
             outtextxy(x1 + 5, y1 + 5, filePath.c_str());
          }
-         // Поле ввода имени
+         // РџРѕР»Рµ РІРІРѕРґР° РёРјРµРЅРё
          else if (mx > x2 && mx < x2 + w2 && my > y2 && my < y2 + h2) {
             entering(x2 + 5, y2 + 5, resultName, 255,
                      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._");
@@ -141,7 +141,7 @@ int main() {
 
       if (kbhit()) {
          int ch = getch();
-         if (ch == 27) break; // ESC – выход
+         if (ch == 27) break; // ESC вЂ“ РІС‹С…РѕРґ
       }
       delay(30);
    }
